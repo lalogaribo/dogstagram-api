@@ -2,7 +2,9 @@ class Api::V1::PostsController < ApplicationController
   before_action :find_post, only: [:update, :show]
   def index
     posts = Post.all
-    render json: serialized_response(posts)
+    # options = {include: [:dog]}
+    render json: posts
+    # render json: serialized_response(posts, options)
   end
 
   def show
@@ -43,7 +45,7 @@ class Api::V1::PostsController < ApplicationController
     @post = Post.find(params[:id])
   end
 
-  def serialized_response(post)
-    PostSerializer.new(post).serialized_json
+  def serialized_response(post, options="")
+    PostSerializer.new(post, options).serialized_json
   end
 end
