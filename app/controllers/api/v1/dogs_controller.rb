@@ -1,11 +1,9 @@
 class Api::V1::DogsController < ApplicationController
-  include ActionController::Cookies
-
   def create
     dog = Dog.new(dog_params)
     if dog.valid?
-      cookies[:dog] = dog
       dog.save
+      cookies[:dog] = dog.id
       render json: DogSerializer.new(dog).serialized_json
     else
       render json: {errors: dog.errors.full_messages}
