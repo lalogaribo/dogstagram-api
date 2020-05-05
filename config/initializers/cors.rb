@@ -7,11 +7,11 @@
 
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
-    origins 'localhost:3000/api/v1/dogs', 'localhost:3000/api/v1/posts'
+    origins '*'
 
     resource '*',
       headers: :any,
-      credentials: true,
+      # credentials: true,
       methods: [:get, :post, :put, :patch, :delete, :options, :head]
   end
 end
