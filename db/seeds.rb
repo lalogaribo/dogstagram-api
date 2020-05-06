@@ -18,3 +18,10 @@ Post.create(image_url: 'https://images.dog.ceo/breeds/retriever-golden/n02099601
 Post.create(image_url: 'https://images.dog.ceo/breeds/setter-english/n02100735_2375.jpg', caption: Faker::Creature::Dog.meme_phrase, dog_id: 1)
 Post.create(image_url: 'https://images.dog.ceo/breeds/husky/n02110185_10171.jpg', caption: Faker::Creature::Dog.meme_phrase, dog_id: 4)
 Post.create(image_url: 'https://images.dog.ceo/breeds/papillon/n02086910_4330.jpg', caption: Faker::Creature::Dog.meme_phrase, dog_id: 5)
+
+
+Comment.create(content: "So cute!", post_id: 1);
+Comment.create(content: "He looks so dumb", post_id: 2);
+Comment.create(content: "10/15", post_id: 3);
+Comment.create(content: "Bring thy head", post_id: 4);
+Comment.create(content: "I want to pet them!", post_id: 5);
