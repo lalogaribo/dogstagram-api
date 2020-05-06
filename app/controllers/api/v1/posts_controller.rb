@@ -12,7 +12,6 @@ class Api::V1::PostsController < ApplicationController
   end
 
   def show
-    #
     render json: @post
   end
 
@@ -30,7 +29,6 @@ class Api::V1::PostsController < ApplicationController
   def update
     if @post.update(post_params)
       render json: @post
-      # render json: serialized_response(@post)
     else
       render json: {errors: @post.errors.full_messages}
     end
@@ -51,7 +49,4 @@ class Api::V1::PostsController < ApplicationController
     @post = Post.find(params[:id])
   end
 
-  def serialized_response(post, options = "")
-    PostSerializer.new(post, options).serialized_json
-  end
 end
