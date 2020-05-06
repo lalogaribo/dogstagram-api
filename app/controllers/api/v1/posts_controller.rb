@@ -29,7 +29,8 @@ class Api::V1::PostsController < ApplicationController
 
   def update
     if @post.update(post_params)
-      render json: serialized_response(@post)
+      render json: @post
+      # render json: serialized_response(@post)
     else
       render json: {errors: @post.errors.full_messages}
     end
