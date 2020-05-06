@@ -1,4 +1,3 @@
-class DogSerializer
-  include FastJsonapi::ObjectSerializer
-  attributes :name, :breed
+class DogSerializer < ActiveModel::Serializer
+  attributes :id, :name, :breed
 end

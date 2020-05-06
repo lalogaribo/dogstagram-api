@@ -4,7 +4,8 @@ class Api::V1::DogsController < ApplicationController
     if dog.valid?
       dog.save
       cookies[:dog] = dog.id
-      render json: DogSerializer.new(dog).serialized_json
+      render json: dog
+      # render json: DogSerializer.new(dog).serialized_json
     else
       render json: {errors: dog.errors.full_messages}
     end

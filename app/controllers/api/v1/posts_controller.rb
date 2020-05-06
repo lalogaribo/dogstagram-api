@@ -1,20 +1,27 @@
 class Api::V1::PostsController < ApplicationController
   before_action :find_post, only: [:update, :show]
+
   def index
-    posts = Post.all
-    render json: serialized_response(posts)
+    if params[:dog_id]
+      dog = Dog.find(params[:dog_id])
+      render json: dog.posts
+    else
+      posts = Post.all
+      render json: posts
+    end
   end
 
   def show
-    render json: serialized_response(@post)
+    #
+    render json: @post
   end
 
   def create
-    dog = Dog.find(cookies[:dog])
+    dog = Dog.find(params[:dog_id])
     post = dog.posts.build(post_params)
     if post.valid?
       post.save
-      render json: serialized_response(post)
+      render json: post
     else
       render json: {errors: post.errors.full_messages}
     end
@@ -43,7 +50,7 @@ class Api::V1::PostsController < ApplicationController
     @post = Post.find(params[:id])
   end
 
-  def serialized_response(post)
-    PostSerializer.new(post).serialized_json
+  def serialized_response(post, options = "")
+    PostSerializer.new(post, options).serialized_json
   end
 end
